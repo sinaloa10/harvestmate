@@ -173,27 +173,24 @@ function WelcomePage() {
                 <a href="#" style={styles.navItem}>Link</a>
                 <a href="#" style={styles.navItem}>Dropdown</a>
             </nav>
-
-            <div style={styles.container}>
-                <h1 style={styles.header}>Welcome to HarvestMate</h1>
-                <p style={styles.text}>
-                    HarvestMate is a tool designed to help you evaluate the conditions of your land.
-                  
-                </p>
-                <p style={styles.text}>Easy-to-use and accessible tool, even for users with little technological experience.</p>
-            </div>
+                  <div style={styles.container}>
+                  <h1 style={styles.header}>Welcome to Harvest</h1>
+                  <div style={styles.contentContainer}>
+                  <img src='./campo (1).png' alt='Granjero'/>
+                    <p style={{ flex: .8, textAlign: 'justify' }}>
+                    HarvestMate is a powerful tool designed to help you evaluate the conditions of your land effectively and efficiently. Whether you are a seasoned farmer or just starting in the agricultural field, this tool provides you with the essential insights needed to make informed decisions about your crops and soil management.
+                    </p>
+                  </div>
+                  </div>
 
             <div style={styles.contenido1}>
-                <h1>Who are we?</h1>
+                <h1 style={styles.header}>Who are we?</h1>
                 <div style={styles.contentContainer}>
                     <p style={{ flex: .8, textAlign: 'justify' }}>
                         We are MCUU, a group of people interested in farmers having an easy and quick tool to improve the way they keep their crops.
                     </p>
                     <img src='./granjero.png' alt='Granjero' />
                 </div>
-            </div>
-                
-            <div>
                 <h1 style={styles.header}>Why prefer HarvestMate?</h1>
                 <div style={styles.infoGrid}>
                     <div style={styles.infoBox}>
@@ -240,7 +237,6 @@ function WelcomePage() {
                     Get started!
                 </button>
             </div>
-
             <footer style={styles.footer}>
                 <p>&copy; 2024 HarvestMate. Todos los derechos reservados.</p>
                 <p>Contáctanos: info@harvestmate.com</p>
