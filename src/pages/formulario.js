@@ -112,7 +112,7 @@ function Formulario() {
 
         <button
           type="submit"
-          style={isHovered ? styles.buttonHover : styles.button}
+          style={isHovered ? { ...styles.button, ...styles.buttonHover } : styles.button}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
@@ -134,6 +134,7 @@ const styles = {
     minHeight: '100vh',
     backgroundColor: '#f7f7f7',
     padding: '20px',
+    fontFamily: "'Roboto', sans-serif", // Cambia la fuente a Roboto para un diseño más moderno
   },
   title: {
     fontSize: '2.5rem',
@@ -143,7 +144,7 @@ const styles = {
   subtitle: {
     fontSize: '1.5rem',
     marginBottom: '15px',
-    color: '#333',
+    color: '#555',
   },
   form: {
     width: '100%',
@@ -151,7 +152,11 @@ const styles = {
     padding: '20px',
     backgroundColor: '#fff',
     borderRadius: '8px',
-    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+    transition: 'transform 0.3s', // Añadido para efecto de hover
+    ':hover': {
+      transform: 'scale(1.02)', // Aumenta el tamaño del formulario al pasar el mouse
+    }
   },
   label: {
     fontSize: '1.1rem',
@@ -167,6 +172,10 @@ const styles = {
     border: '1px solid #ccc',
     marginBottom: '10px',
     boxSizing: 'border-box',
+    transition: 'border-color 0.3s ease',
+    ':focus': {
+      borderColor: '#007bff', // Cambia el color del borde al enfocar
+    },
   },
   button: {
     padding: '10px 20px',
@@ -176,12 +185,15 @@ const styles = {
     border: 'none',
     borderRadius: '5px',
     cursor: 'pointer',
-    transition: 'background-color 0.3s ease',
+    transition: 'background-color 0.3s ease, transform 0.2s ease', // Asegúrate de que no haya otros cambios
     display: 'block',
     margin: '20px auto 0',
+    boxShadow: 'none', // Evitar cambios en el box-shadow
   },
   buttonHover: {
     backgroundColor: '#0056b3',
+    transform: 'scale(1.05)', // Si decides escalar, mantenlo consistente
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Asegúrate de que el cambio no sea drástico
   },
   mensaje: {
     color: 'green',
