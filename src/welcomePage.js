@@ -13,6 +13,7 @@ function WelcomePage() {
   const handleMouseUp = () => setIsActive(false);
 
   const handleButtonClick = () => {
+    navigate('/pages');
     // Usar navigate en lugar de window.location.href
   };
 
@@ -154,7 +155,7 @@ function WelcomePage() {
       backgroundColor: '#6c3c11',
     },
     footer: {
-      backgroundImage: 'url("./footer.jpg")',
+      backgroundImage: 'url("./cosecha.jpg")',
       backgroundSize: 'cover',
       color: '#5a401e',
       textAlign: 'center',
@@ -162,6 +163,7 @@ function WelcomePage() {
       position: 'relative',
       bottom: 0,
       width: '100%',
+      fontWeight: 'bold',
     },
   };
 
@@ -251,8 +253,8 @@ HarvestMate is a tool designed to help you evaluate the conditions of your land.
           <p>It improves farmers' ability to manage their production more efficiently and tailored to their specific needs, without having to invest in expensive machinery or additional sensor systems.</p>
         </div>
         <div style={styles.infoBox}>
-          <h3>Asesoramiento</h3>
-          <p>Asesoramiento en tiempo real sobre estado del suelo o rendimiento del agua.</p>
+          <h3>Advice</h3>
+          <p>Real-time advice on soil status or water yield.</p>
         </div>
       </div>
       </div>
