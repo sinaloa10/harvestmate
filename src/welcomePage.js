@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importar el hook para navegar
+import axios from 'axios'; // Asegúrate de tener axios instalado
 
 function WelcomePage() {
   const [isHovered, setIsHovered] = useState(false);
   const [isActive, setIsActive] = useState(false);
+  const [location, setLocation] = useState(null); // Estado para la ubicación
   
   const navigate = useNavigate(); // Definir el hook de navegación
 
@@ -13,42 +15,75 @@ function WelcomePage() {
   const handleMouseUp = () => setIsActive(false);
 
   const handleButtonClick = () => {
-    // Usar navigate en lugar de window.location.href
+    // Llamar a la función para obtener la ubicación al hacer clic
+    getLocation();
   };
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+
+          // Realiza una solicitud a Nominatim para obtener la dirección
+          axios.get(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`)
+            .then(response => {
+              const address = response.data.display_name; // Obtener la dirección exacta
+              setLocation(address); // Establecer la ubicación en el estado
+              console.log('Location address:', address);
+              navigate('/pages'); // Navegar después de obtener la ubicación
+            })
+            .catch(error => {
+              console.error('Error fetching address:', error);
+            });
+        },
+        (error) => {
+          console.error('Error getting location:', error);
+        }
+      );
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  };
+  const handleScroll = () => {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth' // Desplazamiento suave
+    });
+  };
+
 
   const styles = {
     body: {
       margin: 0,
+      height: '100vh',
+      backgroundColor: '#e8f5e9',
     },
     navbar: {
       position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
+      backgroundColor: '#6c3c11',
+      padding: '15px',
       display: 'flex',
       justifyContent: 'space-around',
-      alignItems: 'center',
-      backgroundColor: '#5a401e',
-      padding: '10px 20px',
-      boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
-      zIndex: 1000,
+      marginTop: '5px',
+      borderRadius: '8px',
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+      width: '100%',
     },
     navItem: {
-      color: 'white',
-      textDecoration: 'none',
-      padding: '10px 15px',
-      borderRadius: '5px',
-      transition: 'background-color 0.3s',
+      color: '#FFFFFF',
+      fontWeight: '600',
+      cursor: 'pointer',
+      fontSize: '18px',
+      textTransform: 'uppercase',
+      letterSpacing: '1px',
     },
-    navItemHover: {
-      backgroundColor: '#6c3c11',
-    },
+
     container: {
       textAlign: 'center',
       padding: '100px 20px 20px 20px',
-      backgroundColor: '#e8f5e9',
-      height: '100vh',
-      color: 'white',
+      backgroundColor: '#e8f5e9', // Este color coincide con el fondo general
+      height: '100vh', // Asegura que ocupe toda la ventana
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
@@ -106,7 +141,7 @@ function WelcomePage() {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      width: '90%',
+      width: '70%',
       marginTop: '20px',
     },
     image: {
@@ -135,25 +170,21 @@ function WelcomePage() {
     },
     scrollButton: {
       position: 'fixed',
+      backgroundColor: 'transparent', // Sin fondo
       bottom: '20px',
       right: '20px',
-      backgroundColor: '#2e7d32',
-      color: 'white',
+      color: '#000',
       border: 'none',
-      borderRadius: '50%',
-      width: '50px',
-      height: '50px',
       cursor: 'pointer',
-      boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',
-      fontSize: '18px',
+      fontSize: '36px', // Tamaño de texto más grande
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       transition: 'background-color 0.3s',
+      fontWeight: 'bold',
+      zIndex: 1000, // Asegúrate de que esté por encima de otros elementos
     },
-    scrollButtonHover: {
-      backgroundColor: '#6c3c11',
-    },
+
     footer: {
       backgroundImage: 'url("./cosecha.jpg")',
       backgroundSize: 'cover',
@@ -215,9 +246,13 @@ function WelcomePage() {
 
   React.useEffect(() => {
     document.body.style.margin = styles.body.margin;
+    document.body.style.height = styles.body.height;
+    document.body.style.backgroundColor = styles.body.backgroundColor;
 
     return () => {
       document.body.style.margin = '';
+      document.body.style.height = '';
+      document.body.style.backgroundColor = '';
     };
   }, []);
 
@@ -228,24 +263,19 @@ function WelcomePage() {
         <a
           href="#"
           style={styles.navItem}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+
         >
           Home
         </a>
         <a
           href="#"
           style={styles.navItem}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
         >
           Link
         </a>
         <a
           href="#"
           style={styles.navItem}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
         >
           Dropdown
         </a>
@@ -268,52 +298,20 @@ function WelcomePage() {
       </div>
 
       <div style={styles.contenido1}>
-        <h1>Who are we?</h1>
+        <h1>HarvestMate</h1>
         <div style={styles.contentContainer}>
-          <img src='./siembra.png' alt='Logo' style={styles.image} />
-          <p style={{ flex: .8 , textAlign: 'justify'}}>
+          <p style={{ flex: .8 , textAlign: 'justify', marginBottom: '500px'}}>
+            <h1>Who are we?</h1>
             We are MCUU, a group of people interested in farmers having an easy and quick tool...
           </p>
-        </div>
-      </div>
-
-      <div style={styles.content}>
-      <h1>Why to prefer HarvestMate?</h1>
-      <div style={styles.infoGrid}>
-        <div style={styles.infoBox}>
-          <h3>Facilitate decision-making</h3>
-          <p>For farmers who are not familiar to advanced technology.</p>
-        </div>
-        <div style={styles.infoBox}>
-          <h3>Applicable information</h3>
-          <p>Applicable and immediately useful information.</p>
-        </div>
-        <div style={styles.infoBox}>
-          <h3>Personalized follow-up</h3>
-          <p>SPersonalized crop tracking, allowing each farmer to organize and monitor different types of crops, with alerts and specific recommendations for each one.</p>
-        </div>
-        <div style={styles.infoBox}>
-          <h3>Planning functions</h3>
-          <p>Planning and prediction functions</p>
-        </div>
-        <div style={styles.infoBox}>
-          <h3>Improves the capacity of the harvest control</h3>
-          <p>It improves farmers' ability to manage their production more efficiently and tailored to their specific needs, without having to invest in expensive machinery or additional sensor systems.</p>
-        </div>
-        <div style={styles.infoBox}>
-          <h3>Advice</h3>
-          <p>Real-time advice on soil status or water yield.</p>
-        </div>
-      </div>
-      </div>
-      <h1 style={styles.content}>CROP MONITORING</h1>
       {/* Centrar el formulario */}
+      
       <div style={styles.formContainer}>
-        
+      
         <form style={styles.form}>
           <label style={styles.label}>
             Location:
-            <input type="text" name="location" style={styles.input} />
+            <input type="text" name="location" style={styles.input} value={location} readOnly />
           </label>
 
           <label style={styles.label}>
@@ -355,17 +353,42 @@ function WelcomePage() {
           </button>
         </form>
       </div>
+        </div>
+      </div>
 
-      <button
-        style={styles.scrollButton}
-        onClick={handleButtonClick}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-      >
+      <div style={styles.content}>
+      <h1>Why to prefer HarvestMate?</h1>
+      <div style={styles.infoGrid}>
+        <div style={styles.infoBox}>
+          <h3>Facilitate decision-making</h3>
+          <p>For farmers who are not familiar to advanced technology.</p>
+        </div>
+        <div style={styles.infoBox}>
+          <h3>Applicable information</h3>
+          <p>Applicable and immediately useful information.</p>
+        </div>
+        <div style={styles.infoBox}>
+          <h3>Personalized follow-up</h3>
+          <p>SPersonalized crop tracking, allowing each farmer to organize and monitor different types of crops, with alerts and specific recommendations for each one.</p>
+        </div>
+        <div style={styles.infoBox}>
+          <h3>Planning functions</h3>
+          <p>Planning and prediction functions</p>
+        </div>
+        <div style={styles.infoBox}>
+          <h3>Improves the capacity of the harvest control</h3>
+          <p>It improves farmers' ability to manage their production more efficiently and tailored to their specific needs, without having to invest in expensive machinery or additional sensor systems.</p>
+        </div>
+        <div style={styles.infoBox}>
+          <h3>Advice</h3>
+          <p>Real-time advice on soil status or water yield.</p>
+        </div>
+      </div>
+      </div>
+
+      <div style={styles.scrollButton} onClick={handleScroll}>
         ↓
-      </button>
+      </div>
       
       <footer style={styles.footer}>
         <p>&copy; 2024 HarvestMate. Todos los derechos reservados.</p>
