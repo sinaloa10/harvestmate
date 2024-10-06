@@ -1,47 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios'; // Importa axios
 
 const Seguimiento = () => {
   const [activeTab, setActiveTab] = useState('info');
-  const [location, setLocation] = useState('Cargando ubicación...');
 
   // Función para cambiar la pestaña activa
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
-
-  // Función para obtener la ubicación
-  const getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          const { latitude, longitude } = position.coords;
-
-          // Llamada a la API de Nominatim para obtener la ubicación
-          try {
-            const response = await axios.get(
-              `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
-            );
-            const address = response.data.display_name;
-            setLocation(address); // Actualiza el estado con el nombre de la ubicación
-          } catch (error) {
-            setLocation('Error al obtener el nombre de la ubicación');
-            console.error('Error fetching location:', error);
-          }
-        },
-        () => {
-          setLocation('No se pudo obtener la ubicación');
-        }
-      );
-    } else {
-      setLocation('Geolocalización no soportada en este navegador.');
-    }
-  };
-
-  // Obtener la ubicación cuando el componente se monta
-  useEffect(() => {
-    getLocation();
-  }, []);
 
   // Estilos en línea
   const styles = {
@@ -156,13 +122,13 @@ const Seguimiento = () => {
             Info
           </button>
           <button
-            onClick={() => handleTabChange('calendario')}
+            onClick={() => handleTabChange('monitoreo')}
             style={{
               ...styles.tabButton,
-              ...(activeTab === 'calendario' ? styles.tabButtonActive : {}),
+              ...(activeTab === 'monitoreo' ? styles.tabButtonActive : {}),
             }}
           >
-            Calendario
+            Monitoreo de actividades
           </button>
           <button
             onClick={() => handleTabChange('graficas')}
@@ -180,15 +146,14 @@ const Seguimiento = () => {
           {activeTab === 'info' && (
             <div className="tab-panel">
               <p>Tu cultivo se presenta...</p>
-              <p>Ubicación: {location}</p> {/* Mostrar el nombre de la ubicación obtenida */}
               <p>El suelo recomendado: djksiwdukwemkne</p>
               <p>El riego es: kehiweuwh, se recomienda keduwwjkjknedn</p>
             </div>
           )}
 
-          {activeTab === 'calendario' && (
+          {activeTab === 'monitoreo' && (
             <div className="tab-panel">
-              <p>Aquí puedes mostrar el calendario...</p>
+              <p>Aquí puedes el monitoreo ...</p>
             </div>
           )}
 
