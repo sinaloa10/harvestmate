@@ -226,7 +226,7 @@ function WelcomePage() {
             <div style={styles.testimonials}>
                 <h2>What our users say</h2>
                 <blockquote style={styles.testimonialQuote}>
-                    "Thanks to HarvestMate, I've increased my yield by 20%! It really works!" – John, Farmer
+                    "Thanks to HarvestMate, I've increased my yield by 20%! It really works!" – Juan, Farmer
                 </blockquote>
                 <blockquote style={styles.testimonialQuote}>
                     "This tool is a game-changer for small farmers." – Maria, Organic Grower
