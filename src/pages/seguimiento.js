@@ -1,12 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'; // Importa axios
 
 const Seguimiento = () => {
   const [activeTab, setActiveTab] = useState('info');
+  const [location, setLocation] = useState('Cargando ubicación...');
 
   // Función para cambiar la pestaña activa
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
+
+  // Función para obtener la ubicación
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+
+          // Llamada a la API de Nominatim para obtener la ubicación
+          try {
+            const response = await axios.get(
+              `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+            );
+            const address = response.data.display_name;
+            setLocation(address); // Actualiza el estado con el nombre de la ubicación
+          } catch (error) {
+            setLocation('Error al obtener el nombre de la ubicación');
+            console.error('Error fetching location:', error);
+          }
+        },
+        () => {
+          setLocation('No se pudo obtener la ubicación');
+        }
+      );
+    } else {
+      setLocation('Geolocalización no soportada en este navegador.');
+    }
+  };
+
+  // Obtener la ubicación cuando el componente se monta
+  useEffect(() => {
+    getLocation();
+  }, []);
 
   // Estilos en línea
   const styles = {
@@ -16,9 +51,12 @@ const Seguimiento = () => {
       alignItems: 'center',
       margin: '20px',
       fontFamily: "'Poppins', sans-serif",
+      backgroundColor: '#e8f5e9', // Aplicar el color de fondo
+      minHeight: '100vh', // Asegurar que cubra toda la altura de la ventana
+      padding: '20px', // Añadir padding para evitar que el contenido quede pegado al borde
     },
     navbar: {
-      backgroundColor: '#354F52',
+      backgroundColor: '#6c3c11',
       padding: '15px',
       display: 'flex',
       justifyContent: 'space-around',
@@ -35,7 +73,7 @@ const Seguimiento = () => {
       letterSpacing: '1px',
     },
     seguimientoContent: {
-      backgroundColor: '#52796F',
+      backgroundColor: '#6c3c11',
       width: '600px',
       padding: '25px',
       borderRadius: '12px',
@@ -50,7 +88,7 @@ const Seguimiento = () => {
       marginBottom: '20px',
     },
     tabButton: {
-      backgroundColor: '#84A98C',
+      backgroundColor: '#8e7048',
       border: 'none',
       padding: '12px 30px',
       borderRadius: '8px',
@@ -142,7 +180,7 @@ const Seguimiento = () => {
           {activeTab === 'info' && (
             <div className="tab-panel">
               <p>Tu cultivo se presenta...</p>
-              <p>Ubicación: wijiwijo2iojwo</p>
+              <p>Ubicación: {location}</p> {/* Mostrar el nombre de la ubicación obtenida */}
               <p>El suelo recomendado: djksiwdukwemkne</p>
               <p>El riego es: kehiweuwh, se recomienda keduwwjkjknedn</p>
             </div>
