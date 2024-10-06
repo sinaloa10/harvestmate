@@ -1,20 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-import WelcomePage from './welcomePage';
-
-
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import WelcomePage from './welcomePage'; // Importar tu componente
 
 function App() {
   return (
-    
-    <div className="App">
-      <header className="App-header">
-      <div>
-      <WelcomePage />
-    </div>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        {/* Ruta de la página de bienvenida */}
+        <Route path="/" element={<WelcomePage />} />
+        {/* Otras páginas */}
+      </Routes>
+    </Router>
   );
 }
 
 export default App;
+

@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importar el hook para navegar
 
 function WelcomePage() {
   const [isHovered, setIsHovered] = useState(false);
   const [isActive, setIsActive] = useState(false);
+  
+  const navigate = useNavigate(); // Definir el hook de navegación
 
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
@@ -10,8 +13,7 @@ function WelcomePage() {
   const handleMouseUp = () => setIsActive(false);
 
   const handleButtonClick = () => {
-    // Redirigir a otra página
-    window.location.href = '/otra-pagina'; // Aquí puedes poner la URL a la que quieres redirigir
+    // Usar navigate en lugar de window.location.href
   };
 
   const styles = {
