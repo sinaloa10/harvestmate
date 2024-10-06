@@ -60,6 +60,7 @@ function WelcomePage() {
       color: '#5a401e',
       marginBottom: '20px',
       fontWeight: 'bold',
+      textAlign: 'center'
     },
     text: {
       fontSize: '20px',
@@ -154,7 +155,7 @@ function WelcomePage() {
       backgroundColor: '#6c3c11',
     },
     footer: {
-      backgroundImage: 'url("./footer.jpg")',
+      backgroundImage: 'url("./cosecha.jpg")',
       backgroundSize: 'cover',
       color: '#5a401e',
       textAlign: 'center',
@@ -162,6 +163,53 @@ function WelcomePage() {
       position: 'relative',
       bottom: 0,
       width: '100%',
+      fontWeight: 'bold',
+    },
+    formContainer: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh', // Esto asegura que el contenedor ocupe toda la pantalla
+    },
+    form: {
+      height: '80vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      backgroundColor: '#e8f5e9',
+      color: '#333',
+      fontSize: '24px',
+      padding: '20px',
+      width: '300px',
+      borderRadius: '8px',
+      boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+    },
+    label: {
+      marginBottom: '15px',
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    input: {
+      padding: '8px',
+      fontSize: '18px',
+      marginTop: '10px',
+      border: '1px solid #ccc',
+      borderRadius: '4px',
+      width: '100%',
+    },
+    submitButton: {
+      marginTop: '20px',
+      padding: '10px',
+      fontSize: '18px',
+      color: 'white',
+      backgroundColor: '#4caf50',
+      border: 'none',
+      borderRadius: '4px',
+      cursor: 'pointer',
+      width: '100%',
+    },
+    submitButtonHover: {
+      backgroundColor: '#45a049',
     },
   };
 
@@ -202,13 +250,13 @@ function WelcomePage() {
           Dropdown
         </a>
       </nav>
+
       <div style={styles.container}>
-        <h1 style={styles.header}>Bienvenido a HarvestMate</h1>
-        <p style={styles.introduccion} className="introduccion">
-          
-HarvestMate is a tool designed to help you evaluate the conditions of your land. Know if the soil conditions, climate and other factors are ideal for planting. Our goal is to provide you with useful information to improve your agricultural decisions.
+        <h1 style={styles.header}>Welcome to HarvestMate</h1>
+        <p style={styles.introduccion}>
+          HarvestMate is a tool designed to help you evaluate the conditions of your land...
         </p>
-  
+
         <button 
           style={styles.buttonPrincipal}
           onClick={handleButtonClick}
@@ -217,16 +265,18 @@ HarvestMate is a tool designed to help you evaluate the conditions of your land.
         >
           Get started!
         </button>
-        
-      </div >
+      </div>
+
       <div style={styles.contenido1}>
         <h1>Who are we?</h1>
-        <div className='contenido1' style={styles.contentContainer}>
+        <div style={styles.contentContainer}>
           <img src='./siembra.png' alt='Logo' style={styles.image} />
-          <p style={{ flex: .8 , textAlign: 'justify'}}>We are MCUU, a group of people interested in farmers having an easy and quick tool to use to improve their work and make it more effective.</p>
+          <p style={{ flex: .8 , textAlign: 'justify'}}>
+            We are MCUU, a group of people interested in farmers having an easy and quick tool...
+          </p>
         </div>
       </div>
-      
+
       <div style={styles.content}>
       <h1>Why to prefer HarvestMate?</h1>
       <div style={styles.infoGrid}>
@@ -251,11 +301,61 @@ HarvestMate is a tool designed to help you evaluate the conditions of your land.
           <p>It improves farmers' ability to manage their production more efficiently and tailored to their specific needs, without having to invest in expensive machinery or additional sensor systems.</p>
         </div>
         <div style={styles.infoBox}>
-          <h3>Asesoramiento</h3>
-          <p>Asesoramiento en tiempo real sobre estado del suelo o rendimiento del agua.</p>
+          <h3>Advice</h3>
+          <p>Real-time advice on soil status or water yield.</p>
         </div>
       </div>
       </div>
+      <h1 style={styles.content}>CROP MONITORING</h1>
+      {/* Centrar el formulario */}
+      <div style={styles.formContainer}>
+        
+        <form style={styles.form}>
+          <label style={styles.label}>
+            Location:
+            <input type="text" name="location" style={styles.input} />
+          </label>
+
+          <label style={styles.label}>
+            Crop:
+            <input type="text" name="crop" style={styles.input} />
+          </label>
+
+          <label style={styles.label}>
+            Aprox size:
+            <select name="irrigation" style={styles.input}>
+            <option value="">Select an option</option> {/* Opción por defecto */}
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+            </select>
+          </label>
+
+          <label style={styles.label}>
+            Irrigation method:
+            <select name="irrigation" style={styles.input}>
+            <option value="">Select an option</option> {/* Opción por defecto */}
+            <option value="drip">Drip</option>
+            <option value="aspersion">aspersion</option>
+            </select>
+          </label>
+          <label style={styles.label}>
+           
+            irrigation frequency:
+            <input type="text" name="frequency" style={styles.input} />
+          </label>
+
+          <button 
+            type="submit" 
+            style={styles.submitButton}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+
       <button
         style={styles.scrollButton}
         onClick={handleButtonClick}
@@ -266,6 +366,7 @@ HarvestMate is a tool designed to help you evaluate the conditions of your land.
       >
         ↓
       </button>
+      
       <footer style={styles.footer}>
         <p>&copy; 2024 HarvestMate. Todos los derechos reservados.</p>
         <p>Contáctanos: info@harvestmate.com</p>
