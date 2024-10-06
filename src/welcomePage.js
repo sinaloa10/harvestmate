@@ -59,6 +59,7 @@ function WelcomePage() {
       fontSize: '48px',
       color: '#5a401e',
       marginBottom: '20px',
+      fontWeight: 'bold',
     },
     text: {
       fontSize: '20px',
@@ -204,7 +205,8 @@ function WelcomePage() {
       <div style={styles.container}>
         <h1 style={styles.header}>Bienvenido a HarvestMate</h1>
         <p style={styles.introduccion} className="introduccion">
-          HarvestMate es una herramienta diseñada para ayudarte a evaluar las condiciones de tu terreno. Conoce si las condiciones del suelo, el clima y otros factores son ideales para sembrar. Nuestro objetivo es brindarte información útil para mejorar tus decisiones agrícolas.
+          
+HarvestMate is a tool designed to help you evaluate the conditions of your land. Know if the soil conditions, climate and other factors are ideal for planting. Our goal is to provide you with useful information to improve your agricultural decisions.
         </p>
   
         <button 
@@ -213,40 +215,40 @@ function WelcomePage() {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          ¡Comencemos!
+          Get started!
         </button>
         
       </div >
       <div style={styles.contenido1}>
-        <h1>¿Quienes somos?</h1>
+        <h1>Who are we?</h1>
         <div className='contenido1' style={styles.contentContainer}>
           <img src='./siembra.png' alt='Logo' style={styles.image} />
-          <p style={{ flex: .8 , textAlign: 'justify'}}>Somos MCUU, un grupo de personas interesadas en que los agricultores tengan una herramienta fácil y rápida de usar para mejorar su trabajo y hacerlo más efectivo.</p>
+          <p style={{ flex: .8 , textAlign: 'justify'}}>We are MCUU, a group of people interested in farmers having an easy and quick tool to use to improve their work and make it more effective.</p>
         </div>
       </div>
       
       <div style={styles.content}>
-      <h1>¿Por qué usar HarvestMate?</h1>
+      <h1>Why to prefer HarvestMate?</h1>
       <div style={styles.infoGrid}>
         <div style={styles.infoBox}>
-          <h3>Facilitar la toma de decisiones</h3>
-          <p>Para los agricultores que no están acostumbrados a tecnología avanzada.</p>
+          <h3>Facilitate decision-making</h3>
+          <p>For farmers who are not familiar to advanced technology.</p>
         </div>
         <div style={styles.infoBox}>
-          <h3>Información aplicable</h3>
-          <p>Información aplicable y útil de inmediato.</p>
+          <h3>Applicable information</h3>
+          <p>Applicable and immediately useful information.</p>
         </div>
         <div style={styles.infoBox}>
-          <h3>Seguimiento personalizado</h3>
-          <p>Seguimiento personalizado de cultivos, permitiendo a cada agricultor organizar y monitorear distintos tipos de cultivo, con alertas y recomendaciones específicas para cada uno.</p>
+          <h3>Personalized follow-up</h3>
+          <p>SPersonalized crop tracking, allowing each farmer to organize and monitor different types of crops, with alerts and specific recommendations for each one.</p>
         </div>
         <div style={styles.infoBox}>
-          <h3>Funciones de planificación</h3>
-          <p>Funciones de planificación y predicción.</p>
+          <h3>Planning functions</h3>
+          <p>Planning and prediction functions</p>
         </div>
         <div style={styles.infoBox}>
-          <h3>Mejora la capacidad de manejo</h3>
-          <p>Mejora la capacidad de los agricultores de manejar su producción de manera más eficiente y adaptada a sus necesidades específicas, sin tener que invertir en maquinaria costosa o sistemas de sensores adicionales.</p>
+          <h3>Improves the capacity of the harvest control</h3>
+          <p>It improves farmers' ability to manage their production more efficiently and tailored to their specific needs, without having to invest in expensive machinery or additional sensor systems.</p>
         </div>
         <div style={styles.infoBox}>
           <h3>Asesoramiento</h3>

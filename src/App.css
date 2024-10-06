@@ -34,3 +34,19 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes scale-up {
+  to {
+      transform: scale(1.5);
+  }
+}
+
+@keyframes fade-away {
+  to {
+      opacity: 0;
+  }
+}
+
+section {
+  view-timeline: --scroll; /* Asegúrate de que este estilo es compatible */
+}
