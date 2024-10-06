@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-
 function WelcomePage() {
   const [isHovered, setIsHovered] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -11,32 +10,26 @@ function WelcomePage() {
   const handleMouseUp = () => setIsActive(false);
 
   const handleButtonClick = () => {
-    // Hacer scroll hacia abajo de la ventana
-    window.scrollBy({
-      top: window.innerHeight,
-      left: 0,
-      behavior: 'smooth',
-    });
+    // Redirigir a otra página
+    window.location.href = '/otra-pagina'; // Aquí puedes poner la URL a la que quieres redirigir
   };
-
-
 
   const styles = {
     body: {
       margin: 0,
     },
     navbar: {
-      position: 'fixed', // Hacer que la navbar sea fija
+      position: 'fixed',
       top: 0,
       left: 0,
       right: 0,
       display: 'flex',
       justifyContent: 'space-around',
       alignItems: 'center',
-      backgroundColor: '#5a401e', // Color de fondo de la navbar
+      backgroundColor: '#5a401e',
       padding: '10px 20px',
-      boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)', // Sombra para un efecto de elevación
-      zIndex: 1000, // Asegurarse de que esté por encima de otros elementos
+      boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+      zIndex: 1000,
     },
     navItem: {
       color: 'white',
@@ -46,11 +39,11 @@ function WelcomePage() {
       transition: 'background-color 0.3s',
     },
     navItemHover: {
-      backgroundColor: '#6c3c11', // Color de fondo al pasar el mouse
+      backgroundColor: '#6c3c11',
     },
     container: {
       textAlign: 'center',
-      padding: '100px 20px 20px 20px', // Aumentar el padding superior para evitar que el contenido quede detrás de la navbar
+      padding: '100px 20px 20px 20px',
       backgroundColor: '#e8f5e9',
       height: '100vh',
       color: 'white',
@@ -109,11 +102,11 @@ function WelcomePage() {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      width: '90%', // Ajusta el ancho según lo necesites
+      width: '90%',
       marginTop: '20px',
     },
     image: {
-      width: '150px', // Ajusta el tamaño de la imagen según lo necesites
+      width: '150px',
       height: 'auto',
     },
     introduccion: {
@@ -121,7 +114,7 @@ function WelcomePage() {
     },
     infoGrid: {
       display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', // Ajusta el número de columnas
+      gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
       gap: '20px',
       padding: '20px',
       width: '80%',
@@ -138,8 +131,8 @@ function WelcomePage() {
     },
     scrollButton: {
       position: 'fixed',
-      bottom: '20px', // Espacio desde el fondo
-      right: '20px', // Espacio desde la derecha
+      bottom: '20px',
+      right: '20px',
       backgroundColor: '#2e7d32',
       color: 'white',
       border: 'none',
@@ -158,8 +151,7 @@ function WelcomePage() {
       backgroundColor: '#6c3c11',
     },
     footer: {
-      
-      backgroundImage: 'url("./footer.jpg")', // Asegúrate de poner la ruta correcta de tu imagen
+      backgroundImage: 'url("./footer.jpg")',
       backgroundSize: 'cover',
       color: '#5a401e',
       textAlign: 'center',
@@ -213,23 +205,26 @@ function WelcomePage() {
           HarvestMate es una herramienta diseñada para ayudarte a evaluar las condiciones de tu terreno. Conoce si las condiciones del suelo, el clima y otros factores son ideales para sembrar. Nuestro objetivo es brindarte información útil para mejorar tus decisiones agrícolas.
         </p>
   
-        <button
+        <button 
           style={styles.buttonPrincipal}
-          
+          onClick={handleButtonClick}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           ¡Comencemos!
         </button>
+        
       </div >
       <div style={styles.contenido1}>
         <h1>¿Quienes somos?</h1>
         <div className='contenido1' style={styles.contentContainer}>
           <img src='./siembra.png' alt='Logo' style={styles.image} />
-          <p style={{ flex: .8 , textAlign: 'justify'}}>Somos MCUU, un grupo de personas interesadas en que los agricultores tengan una herramienta facil y rapida de usar para poder mejorar su trabajo y sea un mas efectivo</p>
+          <p style={{ flex: .8 , textAlign: 'justify'}}>Somos MCUU, un grupo de personas interesadas en que los agricultores tengan una herramienta fácil y rápida de usar para mejorar su trabajo y hacerlo más efectivo.</p>
         </div>
       </div>
       
       <div style={styles.content}>
-      <h1>¿Por que usar HarvestMate?</h1>
+      <h1>¿Por qué usar HarvestMate?</h1>
       <div style={styles.infoGrid}>
         <div style={styles.infoBox}>
           <h3>Facilitar la toma de decisiones</h3>
