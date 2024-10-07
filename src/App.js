@@ -1,6 +1,5 @@
-// src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import WelcomePage from './welcomePage';
 import Seguimiento from './pages/seguimiento';
 import PrecipitationPage from './pages/PrecipitationPage';
