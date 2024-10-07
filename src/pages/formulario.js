@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
 
 function Formulario() {
   const [ubicacion, setUbicacion] = useState({
@@ -13,6 +14,8 @@ function Formulario() {
   const [mensaje, setMensaje] = useState('');
   const [isHovered, setIsHovered] = useState(false);
 
+  const navigate = useNavigate(); // Inicializa el hook useNavigate
+
   const handleChange = (e) => {
     setUbicacion({
       ...ubicacion,
@@ -24,9 +27,11 @@ function Formulario() {
   const handleMouseLeave = () => setIsHovered(false);
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Asegúrate de que este método se llame con un evento válido.
+    e.preventDefault();
     setMensaje('Ubicación guardada exitosamente.');
     console.log('Datos del formulario:', ubicacion);
+    // Redirige a la página de seguimiento después de guardar
+    navigate('/pages'); // Redirige a la página de seguimiento
   };
 
   const obtenerUbicacionActual = () => {
@@ -134,7 +139,7 @@ function Formulario() {
         />
 
         <button
-          type="button" // Cambiar a "button" para evitar el envío inmediato
+          type="button"
           style={isHovered ? { ...styles.button, ...styles.buttonHover } : styles.button}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -150,91 +155,91 @@ function Formulario() {
 }
 
 const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: '100vh',
-    backgroundColor: '#e9ecef',
-    padding: '20px',
-    fontFamily: "'Roboto', sans-serif",
-  },
-  title: {
-    fontSize: '2.5rem',
-    marginBottom: '20px',
-    color: '#5a401e',
-    textAlign: 'center',
-    padding: '10px 20px',
-    borderRadius: '8px',
-    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)',
-    border: '2px solid #5a401e',
-    textTransform: 'uppercase',
-    letterSpacing: '1px',
-  },
-  subtitle: {
-    fontSize: '1.5rem',
-    marginBottom: '15px',
-    color: '#5a401e',
-  },
-  form: {
-    width: '100%',
-    maxWidth: '600px',
-    padding: '30px',
-    backgroundColor: '#a78a64',
-    borderRadius: '8px',
-    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
-    transition: 'transform 0.3s',
-  },
-  label: {
-    fontSize: '1.1rem',
-    marginBottom: '5px',
-    display: 'block',
-    color: '#5a401e',
-  },
-  input: {
-    width: '100%',
-    padding: '12px',
-    fontSize: '1rem',
-    borderRadius: '4px',
-    border: '1px solid #ced4da',
-    marginBottom: '15px',
-    boxSizing: 'border-box',
-    transition: 'border-color 0.3s ease',
-  },
-  select: {
-    width: '100%',
-    padding: '12px',
-    fontSize: '1rem',
-    borderRadius: '4px',
-    border: '1px solid #ced4da',
-    marginBottom: '15px',
-    boxSizing: 'border-box',
-    transition: 'border-color 0.3s ease',
-  },
-  button: {
-    padding: '12px 20px',
-    fontSize: '1.1rem',
-    backgroundColor: '#007bff',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    transition: 'background-color 0.3s ease, transform 0.2s ease',
-    display: 'block',
-    margin: '20px auto 0',
-  },
-  buttonHover: {
-    backgroundColor: '#0056b3',
-    transform: 'scale(1.05)',
-  },
-  mensaje: {
-    color: '#335a1d',
-    fontSize: '1rem',
-    marginTop: '10px',
-    textAlign: 'center',
-    fontWeight: 'bold',
-  },
+    container: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      minHeight: '100vh',
+      backgroundColor: '#e9ecef',
+      padding: '20px',
+      fontFamily: "'Roboto', sans-serif",
+    },
+    title: {
+      fontSize: '2.5rem',
+      marginBottom: '20px',
+      color: '#5a401e',
+      textAlign: 'center',
+      padding: '10px 20px',
+      borderRadius: '8px',
+      boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)',
+      border: '2px solid #5a401e',
+      textTransform: 'uppercase',
+      letterSpacing: '1px',
+    },
+    subtitle: {
+      fontSize: '1.5rem',
+      marginBottom: '15px',
+      color: '#5a401e',
+    },
+    form: {
+      width: '100%',
+      maxWidth: '600px',
+      padding: '30px',
+      backgroundColor: '#a78a64',
+      borderRadius: '8px',
+      boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
+      transition: 'transform 0.3s',
+    },
+    label: {
+      fontSize: '1.1rem',
+      marginBottom: '5px',
+      display: 'block',
+      color: '#5a401e',
+    },
+    input: {
+      width: '100%',
+      padding: '12px',
+      fontSize: '1rem',
+      borderRadius: '4px',
+      border: '1px solid #ced4da',
+      marginBottom: '15px',
+      boxSizing: 'border-box',
+      transition: 'border-color 0.3s ease',
+    },
+    select: {
+      width: '100%',
+      padding: '12px',
+      fontSize: '1rem',
+      borderRadius: '4px',
+      border: '1px solid #ced4da',
+      marginBottom: '15px',
+      boxSizing: 'border-box',
+      transition: 'border-color 0.3s ease',
+    },
+    button: {
+      padding: '12px 20px',
+      fontSize: '1.1rem',
+      backgroundColor: '#007bff',
+      color: '#fff',
+      border: 'none',
+      borderRadius: '5px',
+      cursor: 'pointer',
+      transition: 'background-color 0.3s ease, transform 0.2s ease',
+      display: 'block',
+      margin: '20px auto 0',
+    },
+    buttonHover: {
+      backgroundColor: '#0056b3',
+      transform: 'scale(1.05)',
+    },
+    mensaje: {
+      color: '#335a1d',
+      fontSize: '1rem',
+      marginTop: '10px',
+      textAlign: 'center',
+      fontWeight: 'bold',
+    },
 };
 
 export default Formulario;

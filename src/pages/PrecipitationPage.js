@@ -14,11 +14,11 @@ const PrecipitationPage = () => {
         const fetchPrecipitationData = async () => {
             const longitude = -99.1332;
             const latitude = 19.4326;
-            const start = '20241101';
-            const end = '20241111';
+            const start = '20231101';
+            const end = '20231111';
             
             try {
-                const response = await axios.get(`http://localhost:3000/api/precipitation`, {
+                const response = await axios.get(`http://localhost:3001/api/precipitation`, {
                     params: { longitude, latitude, start, end }
                 });
 
