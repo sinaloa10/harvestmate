@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/sinaloa10/harvestmate.git/static/css/main.e6c13ad2.css",
+    "main.js": "/sinaloa10/harvestmate.git/static/js/main.5471a876.js",
+    "static/js/453.ae9d1f13.chunk.js": "/sinaloa10/harvestmate.git/static/js/453.ae9d1f13.chunk.js",
+    "index.html": "/sinaloa10/harvestmate.git/index.html",
+    "main.e6c13ad2.css.map": "/sinaloa10/harvestmate.git/static/css/main.e6c13ad2.css.map",
+    "main.5471a876.js.map": "/sinaloa10/harvestmate.git/static/js/main.5471a876.js.map",
+    "453.ae9d1f13.chunk.js.map": "/sinaloa10/harvestmate.git/static/js/453.ae9d1f13.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.5471a876.js"
+  ]
+}
